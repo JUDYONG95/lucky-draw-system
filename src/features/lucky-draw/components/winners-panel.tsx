@@ -18,13 +18,12 @@ export function WinnersPanel({ winners, tiers }: WinnersPanelProps) {
 
     const headers = ["Prize Tier", "Name", "Employee ID", "Department", "Drawn At"];
     const rows = winners
-      .sort((a, b) => a.tier.order - b.tier.order)
       .map((w) => [
         w.tier.name,
         w.participant.name,
         w.participant.employeeId || "",
         w.participant.department || "",
-        w.drawnAt.toLocaleString(),
+        (w.drawnAt || w.timestamp).toLocaleString(),
       ]);
 
     const csvContent = [headers, ...rows]
